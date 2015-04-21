@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create a Web Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css">
+    <style>
+        html, body, #mapDiv, .map.container {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #legendDiv {
+            background-color: #fff;
+            position: absolute !important;
+            z-index: 99;
+            top: 10px;
+            right: 20px;
+        }
+    </style>
+
+    <script>var dojoConfig = { parseOnLoad:true };</script>
+    <script src="http://js.arcgis.com/3.7/"></script>
+    <script>
+    var map;
+     require([
+      "esri/map",
+      "esri/arcgis/utils",
+      "esri/dijit/Legend",
+      "dojo/domReady"
+      ], function(Map, arcgisUtils, Legend){
+        //arcgisUtils.createMap("ae3b52abf6764c3d8302cc3bd0656547", "mapDiv").then(function (response) {
+		arcgisUtils.createMap("c6ce08ed6358460ca841e00f5ce00602", "mapDiv").then(function (response) {
+          map = response.map;
+        var legend = new Legend({
+            map: map,
+            layerInfos:(arcgisUtils.getLegendLayers(response))
+        }, "legendDiv");
+
+        //legend.startup();
+        });
+  });
+    </script>
+</head>
+<body>
+    <div id="mapDiv"></div>
+    <div id="legendDiv"></div>
+</body>
+</html>
